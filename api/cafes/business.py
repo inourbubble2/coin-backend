@@ -1,5 +1,5 @@
 from database import use_database
-from database.models import Cafe
+from api.cafes.model import Cafe
 
 
 @use_database

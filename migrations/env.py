@@ -1,6 +1,5 @@
 from logging.config import fileConfig
 
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
@@ -18,7 +17,7 @@ fileConfig(config.config_file_name)
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from database.models import Base
+from api.cafes.model import Base
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,

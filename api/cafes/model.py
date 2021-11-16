@@ -9,7 +9,7 @@ from sqlalchemy import Column, String, DateTime, Float, ForeignKey, Integer, Enu
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.sql import func
 
-from .base import Base
+from database.base import Base
 
 
 # class User(Base):
