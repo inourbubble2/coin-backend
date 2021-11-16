@@ -50,6 +50,6 @@ cafe_request = api.model('CafeRequest', {
     'star': fields.Integer(),
 
     'kakao_id': fields.String(required=True, example="682378583"),
-    'latitude': fields.Float(example="127.052942"),
-    'longitude': fields.Float(example="37.5854582"),
+    'latitude': fields.Float(example=127.052942),
+    'longitude': fields.Float(example=37.5854582),
 })
