@@ -25,6 +25,7 @@ class LocationEnum(enum.Enum):
     front = '정문'
     back = '후문'
     side = '쪽문'
+    hoegi = '회기'
 
 
 class Cafe(Base):
