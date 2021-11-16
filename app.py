@@ -2,6 +2,7 @@ import logging.config
 
 import os
 from flask import Flask, Blueprint
+from flask_cors import CORS
 import settings
 from api.controllers.cafe_controller import ns as cafe_namespace
 from api.restplus import api
@@ -29,6 +30,8 @@ def initialize_app(flask_app):
     api.init_app(blueprint)
     api.add_namespace(cafe_namespace)
     flask_app.register_blueprint(blueprint)
+
+    CORS(flask_app, resources={r'/*': {'origins': '*'}})
 
 
 def main():
