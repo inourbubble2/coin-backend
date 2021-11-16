@@ -9,4 +9,4 @@ cd coin-backend
 pip install -r requirements.txt
 python app.py
 ~~~
-Then visit http://localhost:5000/api/ for API Docs.
+Then visit http://0.0.0.0:5000/api/ for API Docs.

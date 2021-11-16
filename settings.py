@@ -9,5 +9,5 @@ RESTPLUS_MASK_SWAGGER = False
 RESTPLUS_ERROR_404_HELP = False
 
 # SQLAlchemy settings
-SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/coin-database'
+SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@coin-database:5432/coin-database'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
