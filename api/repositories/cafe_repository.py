@@ -9,7 +9,7 @@ def create(db, data):
 
     for key, value in data.items():
         if not getattr(cafe, key):
-            raise BadRequest
+            raise BadRequest()
         setattr(cafe, key, value)
 
     db.add(cafe)
@@ -23,7 +23,7 @@ def find_one(db, cafe_id):
         .one()
 
     if not cafe:
-        raise NotFound
+        raise NotFound()
 
     return cafe
 
@@ -50,7 +50,7 @@ def update(db, cafe_id, data):
 
     for key, value in data.items():
         if not getattr(cafe, key):
-            raise BadRequest
+            raise BadRequest()
         setattr(cafe, key, value)
 
     db.add(cafe)
