@@ -1,12 +1,17 @@
 Coin API
 =============
-Backend API for the project called Code-In.
+Backend API for the project called Coding-In.
 
-Run
+1. Install Docker Desktop
+2. Run this command
 ~~~ bash
 git clone https://github.com/inourbubble2/coin-backend.git
 cd coin-backend
-pip install -r requirements.txt
-python app.py
+docker-compose up -d --build
 ~~~
-Then visit http://0.0.0.0:5000/api/ for API Docs.
+3. Check http://0.0.0.0:5000/api/
+
+If you need migration, run
+~~~ bash
+docker exec -it coin-backend alembic upgrade head
+~~~
