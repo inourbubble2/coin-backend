@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  coin-backend:
+    container_name: coin-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    working_dir: /app
+    volumes:
+      - ./:/app/
+    networks:
+      - coin-backend
+    depends_on:
+      - coin-database
+
+  coin-database:
+    container_name: coin-database
+    image: postgres:14
+    user: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=coin-database
+    ports:
+      - "5432:5432"
+    volumes:
+      - coin-pgdata:/var/lib/postgresql/data
+    networks:
+      - coin-backend
+
+networks:
+  coin-backend:
+    driver: bridge
+
+volumes:
+  coin-pgdata:
