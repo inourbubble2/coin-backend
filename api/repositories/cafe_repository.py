@@ -31,7 +31,7 @@ def find(db, page, per_page, name, location):
     query = db.query(Cafe)
 
     if name:
-        query = query.filter(Cafe.name.like(name))
+        query = query.filter(Cafe.name.like(f'%{name}%'))
     if location:
         query = query.filter(Cafe.location == location)
 
