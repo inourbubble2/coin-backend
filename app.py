@@ -3,7 +3,7 @@ import logging.config
 import os
 from flask import Flask, Blueprint
 import settings
-from api.cafes.view import ns as cafe_namespace
+from api.cafes.controller import ns as cafe_namespace
 from api.restplus import api
 
 app = Flask(__name__)

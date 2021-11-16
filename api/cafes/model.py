@@ -12,15 +12,6 @@ from sqlalchemy.sql import func
 from database.base import Base
 
 
-# class User(Base):
-#     __tablename__ = 'users'
-#     id = Column(String(120), primary_key=True, default=lambda: str(uuid.uuid4()))
-#     nickname = Column(String(120), nullable=False)
-#     email = Column(String(120), nullable=True)
-#     student_year = Column(Integer, nullable=True)
-#     dept_code = Column(String(3), nullable=True)
-
-
 class LocationEnum(enum.Enum):
     front = '정문'
     back = '후문'
@@ -50,3 +41,5 @@ class Cafe(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     deleted_at = Column(DateTime(timezone=True))
+
+
