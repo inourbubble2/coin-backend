@@ -5,7 +5,7 @@ from flask import Flask, Blueprint
 from flask_cors import CORS
 import settings
 from api.controllers.cafe_controller import ns as cafe_namespace
-from api.restplus import api
+from api.restx import api
 
 app = Flask(__name__)
 logging_conf_path = os.path.normpath(os.path.join(os.path.dirname(__file__), 'logging.conf'))

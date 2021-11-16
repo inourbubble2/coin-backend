@@ -5,7 +5,7 @@ from flask_restx import Resource
 from api.services.cafe_service import Cafe
 from api.serializers.cafe_serializer import cafe, cafe_update_request, cafe_create_request
 from api.parser import pagination_arguments, cafe_search_arguments
-from api.restplus import api
+from api.restx import api
 
 log = logging.getLogger(__name__)
 cafe_service = Cafe()

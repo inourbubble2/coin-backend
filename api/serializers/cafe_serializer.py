@@ -1,5 +1,5 @@
 from flask_restx import fields
-from api.restplus import api
+from api.restx import api
 from database.cafe import LocationEnum
 
 
