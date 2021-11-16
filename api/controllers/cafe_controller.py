@@ -1,7 +1,7 @@
 import logging
 
 from flask import request
-from flask_restplus import Resource
+from flask_restx import Resource
 from api.services.cafe_service import Cafe
 from api.serializers.cafe_serializer import cafe, cafe_update_request, cafe_create_request
 from api.parser import pagination_arguments, cafe_search_arguments

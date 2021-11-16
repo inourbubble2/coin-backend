@@ -1,13 +1,13 @@
 import logging
 import traceback
 
-from flask_restplus import Api
+from flask_restx import Api
 import settings
 from sqlalchemy.orm.exc import NoResultFound
 
 log = logging.getLogger(__name__)
 
-api = Api(version='1.0', title='Coin API',
+api = Api(version='2.0', title='Coin API',
           description='Coin의 API입니다.')
 
 
