@@ -31,13 +31,13 @@ def read_cafe(db, cafe_id):
 
 
 @use_database
-def read_cafes(db, data, page, per_page):
+def read_cafes(db, page, per_page, name, location):
     query = db.query(Cafe)
 
-    if 'name' in data:
-        query = query.filter(Cafe.name.like(data.get('name')))
-    if 'location' in data:
-        query = query.filter(Cafe.location.is_(data.get('location')))
+    if name:
+        query = query.filter(Cafe.name.like(name))
+    if location:
+        query = query.filter(Cafe.location == location)
 
     cafes = query.offset((page - 1) * per_page)\
         .limit(per_page)\
