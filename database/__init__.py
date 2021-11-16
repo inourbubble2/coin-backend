@@ -3,10 +3,11 @@ import json
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from settings import SQLALCHEMY_DATABASE_URI
 
 
 engine = create_engine(
-    'postgresql://postgres:postgres@localhost:5432/coin-database', connect_args={'connect_timeout': 10},
+    SQLALCHEMY_DATABASE_URI, connect_args={'connect_timeout': 10},
     pool_size=2, max_overflow=50,
     json_serializer=lambda obj: json.dumps(obj, ensure_ascii=False)
 )

@@ -1,6 +1,6 @@
 from flask_restplus import fields
 from api.restplus import api
-from api.cafes.model import LocationEnum
+from database.cafe import LocationEnum
 
 
 class Location(fields.Raw):

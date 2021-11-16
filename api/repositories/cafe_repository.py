@@ -1,5 +1,6 @@
+from werkzeug.exceptions import NotFound, BadRequest
 from database import use_database
-from api.cafes.model import Cafe
+from database.cafe import Cafe
 
 
 @use_database
@@ -7,6 +8,8 @@ def create(db, data):
     cafe = Cafe()
 
     for key, value in data.items():
+        if not getattr(cafe, key):
+            raise BadRequest
         setattr(cafe, key, value)
 
     db.add(cafe)
@@ -14,16 +17,19 @@ def create(db, data):
 
 
 @use_database
-def select_one(db, cafe_id):
+def find_one(db, cafe_id):
     cafe = db.query(Cafe)\
         .filter(Cafe.id == cafe_id)\
         .one()
+
+    if not cafe:
+        raise NotFound
 
     return cafe
 
 
 @use_database
-def select_all(db, page, per_page, name, location):
+def find(db, page, per_page, name, location):
     query = db.query(Cafe)
 
     if name:
@@ -40,9 +46,11 @@ def select_all(db, page, per_page, name, location):
 
 @use_database
 def update(db, cafe_id, data):
-    cafe = select_one(cafe_id)
+    cafe = find_one(cafe_id)
 
     for key, value in data.items():
+        if not getattr(cafe, key):
+            raise BadRequest
         setattr(cafe, key, value)
 
     db.add(cafe)
@@ -50,8 +58,8 @@ def update(db, cafe_id, data):
 
 
 @use_database
-def delete(db, cafe_id):
-    cafe = select_one(cafe_id)
+def remove(db, cafe_id):
+    cafe = find_one(cafe_id)
 
     db.delete(cafe)
     db.commit()
