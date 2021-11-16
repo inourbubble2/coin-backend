@@ -8,8 +8,6 @@ def create(db, data):
     cafe = Cafe()
 
     for key, value in data.items():
-        if not getattr(cafe, key):
-            raise BadRequest()
         setattr(cafe, key, value)
 
     db.add(cafe)
@@ -49,8 +47,6 @@ def update(db, cafe_id, data):
     cafe = find_one(cafe_id)
 
     for key, value in data.items():
-        if not getattr(cafe, key):
-            raise BadRequest()
         setattr(cafe, key, value)
 
     db.add(cafe)
