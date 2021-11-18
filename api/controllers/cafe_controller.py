@@ -2,13 +2,13 @@ import logging
 
 from flask import request
 from flask_restx import Resource
-from api.services.cafe_service import Cafe
-from api.serializers.cafe_serializer import cafe, cafe_update_request, cafe_create_request
+from api.services.cafe_service import CafeService
+from api.dto.cafe_dto import cafe, paginated_cafe, cafe_update_request, cafe_create_request
 from api.parser import pagination_arguments, cafe_search_arguments
 from api.restx import api
 
 log = logging.getLogger(__name__)
-cafe_service = Cafe()
+cafe_service = CafeService()
 
 ns = api.namespace('cafes', description='Operations related to cafes')
 
@@ -17,7 +17,7 @@ ns = api.namespace('cafes', description='Operations related to cafes')
 class CafeCollection(Resource):
 
     @api.expect(pagination_arguments, cafe_search_arguments)
-    @api.marshal_list_with(cafe)
+    @api.marshal_with(paginated_cafe)
     def get(self):
         args = pagination_arguments.parse_args(request)
         page = args.get('page', 1)
@@ -27,7 +27,7 @@ class CafeCollection(Resource):
         name = args.get('name')
         location = args.get('location')
 
-        cafes = cafe_service.find(page, per_page, name, location)
+        cafes = cafe_service.find_with_pagination_and_arguments(page, per_page, name, location)
         return cafes
 
     @api.expect(cafe_create_request, validate=True)

@@ -1,6 +1,7 @@
 from flask_restx import fields
 from api.restx import api
 from database.cafe import LocationEnum
+from api.dto.pagination_dto import meta
 
 
 class Location(fields.Raw):
@@ -36,6 +37,11 @@ cafe = api.model('Cafe', {
     'created_at': fields.DateTime(),
     'updated_at': fields.DateTime(),
     'deleted_at': fields.DateTime()
+})
+
+paginated_cafe = api.model('PaiginatedCafe', {
+    "items": fields.Nested(cafe, skip_none=True),
+    "meta": fields.Nested(meta, skip_none=True)
 })
 
 cafe_create_request = api.model('CafeCreateRequest', {
