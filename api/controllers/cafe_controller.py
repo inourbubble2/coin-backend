@@ -69,9 +69,8 @@ class KakaoCafeItem(Resource):
     def get(self):
         args = kakao_cafe_search_arguments.parse_args()
         name = args.get('name', '')
-        address = args.get('address', '')
 
-        cafes = cafe_service.find_cafe_from_kakao(name, address)
+        cafes = cafe_service.find_cafe_from_kakao(name)
         return cafes, 200
 
 

@@ -13,4 +13,3 @@ cafe_search_arguments.add_argument('location', type=str, required=False, choices
 
 kakao_cafe_search_arguments = reqparse.RequestParser()
 kakao_cafe_search_arguments.add_argument('name', type=str, required=True, help='Cafe Name')
-kakao_cafe_search_arguments.add_argument('address', type=str, required=True, help='Cafe Address')
