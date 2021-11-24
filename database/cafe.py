@@ -37,7 +37,9 @@ class Cafe(Base):
     latitude = Column(Float(), nullable=True)
     longitude = Column(Float(), nullable=True)
 
-    created_by = Column(String())
+    created_by_id = Column(String(), ForeignKey("users.id"))
+    created_by = relationship(backref('cafes'))
+
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     deleted_at = Column(DateTime(timezone=True))
