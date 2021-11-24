@@ -3,6 +3,8 @@ version: '3'
 services:
   coin-backend:
     container_name: coin-backend
+    environment:
+      - MODE=docker
     build:
       context: .
       dockerfile: Dockerfile
