@@ -12,6 +12,9 @@ class UserService(Service):
         super().__init__(self.repository)
 
     def create(self, data):
+        if isinstance(data['kakao_id'], int):
+            data['kakao_id'] = str(data['kakao_id'])
+
         if self.repository.find_by_kakao_id(data['kakao_id']):
             raise Conflict
 
