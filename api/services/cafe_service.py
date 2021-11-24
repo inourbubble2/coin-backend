@@ -29,7 +29,6 @@ class CafeService(Service):
         url = f'https://dapi.kakao.com/v2/local/search/keyword.json?sort=accuracy&query={query}&category_group_code=CE7&size=1'
         response = requests.get(url, headers=header).json()
 
-        print(response)
         if len(response['documents']) == 0:
             raise NotFound
 
