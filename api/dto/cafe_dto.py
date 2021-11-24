@@ -75,3 +75,14 @@ cafe_update_request = api.model('CafeUpdateRequest', {
     'latitude': fields.Float(example=127.052942),
     'longitude': fields.Float(example=37.5854582),
 })
+
+kakao_cafe = api.model('KakaoCafe', {
+    'address_name': fields.String(),
+    'road_address_name': fields.String(),
+    'category_name': fields.String(),
+    'phone': fields.String(),
+    'place_name': fields.String(),
+    'place_url': fields.String(),
+    'x': fields.Float(),
+    'y': fields.Float(),
+})

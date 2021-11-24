@@ -3,8 +3,8 @@ import logging
 from flask import request
 from flask_restx import Resource
 from api.services.cafe_service import CafeService
-from api.dto.cafe_dto import cafe, paginated_cafe, cafe_update_request, cafe_create_request
-from api.parser import pagination_arguments, cafe_search_arguments
+from api.dto.cafe_dto import cafe, paginated_cafe, cafe_update_request, cafe_create_request, kakao_cafe
+from api.parser import pagination_arguments, cafe_search_arguments, kakao_cafe_search_arguments
 from api.restx import api
 
 log = logging.getLogger(__name__)
@@ -60,7 +60,18 @@ class CafeItem(Resource):
         return None, 204
 
 
+@ns.route('/kakao')
+@api.response(404, 'Kakao Cafe not found.')
+class KakaoCafeItem(Resource):
 
+    @api.expect(kakao_cafe_search_arguments)
+    @api.marshal_list_with(kakao_cafe)
+    def get(self):
+        args = kakao_cafe_search_arguments.parse_args()
+        name = args.get('name', '')
+        address = args.get('address', '')
 
+        cafes = cafe_service.find_cafe_from_kakao(name, address)
+        return cafes, 200
 
 
