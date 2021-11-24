@@ -5,7 +5,7 @@ from sqlalchemy import Column, String, DateTime, Float, ForeignKey, Integer, Enu
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.sql import func
 
-from database.base import Base
+from .base import Base
 
 
 class User(Base):

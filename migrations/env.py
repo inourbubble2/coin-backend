@@ -18,8 +18,8 @@ fileConfig(config.config_file_name)
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 from database.base import Base
-from database.cafe import Cafe
 from database.user import User
+from database.cafe import Cafe
 from database.review import Review
 
 target_metadata = Base.metadata

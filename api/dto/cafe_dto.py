@@ -33,7 +33,6 @@ cafe = api.model('Cafe', {
     'latitude': fields.Float(),
     'longitude': fields.Float(),
 
-    'created_by': fields.String(),
     'created_at': fields.DateTime(),
     'updated_at': fields.DateTime(),
     'deleted_at': fields.DateTime()

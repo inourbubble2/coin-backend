@@ -9,7 +9,8 @@ from sqlalchemy import Column, String, DateTime, Float, ForeignKey, Integer, Enu
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.sql import func
 
-from database.base import Base
+from database.user import User
+from .base import Base
 
 
 class LocationEnum(enum.Enum):
@@ -38,7 +39,7 @@ class Cafe(Base):
     longitude = Column(Float(), nullable=True)
 
     created_by_id = Column(String(), ForeignKey("users.id"))
-    created_by = relationship(backref('cafes'))
+    creator = relationship("User")
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
