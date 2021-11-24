@@ -1,6 +1,6 @@
 import requests
 
-from werkzeug.exceptions import BadRequest
+from werkzeug.exceptions import BadRequest, NotFound, Conflict
 
 from api.services.service import Service
 from api.repositories.cafe_repository import CafeRepository
@@ -10,6 +10,9 @@ class CafeService(Service):
     def __init__(self):
         self.repository = CafeRepository()
         super().__init__(self.repository)
+
+    def find_by_kakao_id(self, kakao_id):
+        return self.repository.find_by_kakao_id(kakao_id)
 
     def create(self, data):
         for key, value in data.items():
@@ -23,11 +26,17 @@ class CafeService(Service):
         url = f'https://dapi.kakao.com/v2/local/search/keyword.json?sort=accuracy&query={query}&category_group_code=CE7&size=1'
         response = requests.get(url, headers=header).json()
 
+        if len(response['documents']) == 0:
+            raise NotFound
+
         data['name'] = response['documents'][0]['place_name']
         data['longitude'] = response['documents'][0]['x']
         data['latitude'] = response['documents'][0]['y']
         data['address'] = response['documents'][0]['road_address_name']
         data['kakao_id'] = response['documents'][0]['id']
+
+        if self.find_by_kakao_id(data['kakao_id']):
+            raise Conflict
 
         super().create(data)
 
