@@ -21,7 +21,7 @@ class CafeService(Service):
             elif key == 'location' and not value in {'hoegi', 'front', 'side', 'back'}:
                 raise BadRequest('location is not valid.')
 
-        documents = self.find_cafe_from_kakao(data['name'], data['address'])
+        documents = self.find_cafe_from_kakao(data['name'])
 
         data['address'] = documents[0]['road_address_name']
         data['name'] = documents[0]['place_name']
@@ -32,10 +32,12 @@ class CafeService(Service):
 
         super().create(data)
 
-    def find_cafe_from_kakao(self, name, address):
+    def find_cafe_from_kakao(self, name):
         header = {'Authorization': 'KakaoAK e739d059fb281ac73a2ca928910f688d'}
-        query = f'{address} {name}'
-        url = f'https://dapi.kakao.com/v2/local/search/keyword.json?sort=accuracy&query={query}&category_group_code=CE7&size=1'
+        url = f'https://dapi.kakao.com/v2/local/search/keyword.json?sort=accuracy&query={name}'
+        url += '&category_group_code=CE7&size=1'
+        url += '&x=127.060769&y=37.586549&radius=1000'
+
         response = requests.get(url, headers=header).json()
 
         if len(response['documents']) == 0:
