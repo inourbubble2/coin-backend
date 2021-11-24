@@ -57,6 +57,9 @@ cafe_create_request = api.model('CafeCreateRequest', {
     'kakao_id': fields.String(required=True, example="682378583"),
     'latitude': fields.Float(example=127.052942),
     'longitude': fields.Float(example=37.5854582),
+
+    'creator_id': fields.String(),
+    'creator_nickname': fields.String(),
 })
 
 cafe_update_request = api.model('CafeUpdateRequest', {

@@ -5,6 +5,7 @@ from flask import Flask, Blueprint
 from flask_cors import CORS
 import settings
 from api.controllers.cafe_controller import ns as cafe_namespace
+from api.controllers.user_controller import ns as user_namespace
 from api.restx import api
 
 app = Flask(__name__)
@@ -29,6 +30,7 @@ def initialize_app(flask_app):
     blueprint = Blueprint('api', __name__, url_prefix='/api')
     api.init_app(blueprint)
     api.add_namespace(cafe_namespace)
+    api.add_namespace(user_namespace)
     flask_app.register_blueprint(blueprint)
 
     CORS(flask_app, resources={r'/*': {'origins': '*'}})

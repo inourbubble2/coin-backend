@@ -29,7 +29,7 @@ class CafeRepository(Repository):
     def find_by_kakao_id(self, kakao_id):
         cafe = self.db.query(Cafe) \
             .filter(Cafe.kakao_id == kakao_id) \
-            .one()
+            .first()
 
         if cafe:
             return cafe
